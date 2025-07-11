@@ -7,73 +7,80 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f8f8f8;
         }
+
         .customer-info-container {
             border: 1px solid #ccc;
             padding: 20px;
             width: 400px;
             margin: 20px 0;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-            background-color: #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .customer-info-container h2 {
             margin-top: 0;
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
-            font-size: 1.5em;
-            color: #007bff;
+            font-size: 1.2em;
+            color: #333;
         }
+
         .customer-info-container p {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
+
         .customer-info-container p strong {
-            width: 90px; /* Căn chỉnh nhãn */
+            width: 80px; /* Align labels */
             display: inline-block;
             margin-right: 10px;
             color: #555;
         }
+
         .customer-info-container input[type="text"] {
-            flex-grow: 1; /* Làm cho ô input chiếm hết không gian còn lại */
-            padding: 10px;
+            flex-grow: 1;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1em;
         }
+
         .customer-info-container button {
-            background-color: #28a745; /* Màu xanh lá cây */
+            background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 1.1em;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+            font-size: 1em;
+            margin-top: 15px;
         }
+
         .customer-info-container button:hover {
-            background-color: #218838;
+            background-color: #45a049;
         }
+
         a {
-            color: #6c757d;
+            color: #007bff;
             text-decoration: none;
             margin-top: 20px;
             display: inline-block;
         }
+
         a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div class="customer-info-container">
-    <h2>Customer Information</h2>
-    <form action="${pageContext.request.contextPath}/customers" method="post">
+<form method="post" action="${pageContext.request.contextPath}/customers/update">
+    <div class="customer-info-container">
+        <h2>Customer Information</h2>
         <p>
             <strong>Id:</strong>
-            <input type="text" name="id" value="<c:out value="${customer.id}"/>" readonly>
+            <input type="hidden" name="id" value="<c:out value="${customer.id}"/>">
+            <input type="text" value="<c:out value="${customer.id}"/>" readonly>
         </p>
         <p>
             <strong>Name:</strong>
@@ -87,9 +94,9 @@
             <strong>Address:</strong>
             <input type="text" name="address" value="<c:out value="${customer.address}"/>">
         </p>
-        <button type="submit">Update</button>
-    </form>
-</div>
+        <button>Update</button>
+    </div>
+</form>
 <p><a href="${pageContext.request.contextPath}/customers">Back to list</a></p>
 </body>
 </html>
